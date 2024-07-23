@@ -405,9 +405,8 @@ func EnhanceFromSchematic(
 	// skip customizations for profile kinds which don't support it
 	//
 	// initramfs/kernel can't carry extra kernel args & META
-	// !secureboot (non-UKI) installer can't carry extra kernel args & META
 	// UKI installer has kernel args embedded in the UKI image
-	if !(prof.Output.Kind == profile.OutKindInitramfs || prof.Output.Kind == profile.OutKindKernel || (prof.Output.Kind == profile.OutKindInstaller && !prof.SecureBootEnabled())) {
+	if !(prof.Output.Kind == profile.OutKindInitramfs || prof.Output.Kind == profile.OutKindKernel) {
 		prof.Customization.ExtraKernelArgs = append(prof.Customization.ExtraKernelArgs, schematic.Customization.ExtraKernelArgs...)
 
 		if prof.Output.Kind != profile.OutKindInstaller {
